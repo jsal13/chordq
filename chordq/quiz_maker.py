@@ -1,9 +1,10 @@
 import random
 
+from chordq.note import Note
 from chordq.randomize import random_chord, random_scale
 
 
-def quiz_exclude_one_in_scale() -> tuple[str, str, list[str], str]:
+def quiz_exclude_one_in_scale() -> tuple[str, str, list[Note], Note]:
     """
     Excludes one value in the list of notes in a `scale`.
 
@@ -21,24 +22,25 @@ def quiz_exclude_one_in_scale() -> tuple[str, str, list[str], str]:
 
     """
     scale = random_scale()
-    n: int = len(scale[2])
+    notes = scale[2]
+    n: int = len(notes)
     rand_note_idx: int = random.randint(1, n - 2)  # Don't make it the tonic or octave.
-    missing_note_list: list[str] = scale[2].copy()
-    missing_note_val: int = scale[2][rand_note_idx]
-    missing_note_list[rand_note_idx] = "__"
+    missing_note_val: int = notes[rand_note_idx]
+    notes[rand_note_idx] = "__"
 
-    return (scale[0], scale[1], missing_note_list, missing_note_val)
+    return (scale[0], scale[1], notes, missing_note_val)
 
 
-def quiz_random_chord() -> tuple[str, str, list[str]]:
+def quiz_random_chord() -> tuple[str, str, list[Note]]:
     """
     Quiz the user on a random maj chord.
 
     Returns:
         tuple[str, list[str]]: Tuple of Chord_Type and List of Values.
     """
-    chord: tuple[str, str, list[str]] = random_chord()
+    chord: tuple[str, str, list[Note]] = random_chord()
     key: str = chord[0]
     chord_type: str = chord[1]
-    chord_notes: list[str] = chord[2]
-    return (key, chord_type, chord_notes[1:])
+    chord_notes: list[Note] = chord[2]
+
+    return (key, chord_type, chord_notes)

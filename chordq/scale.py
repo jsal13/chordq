@@ -1,6 +1,7 @@
 import attr
-from constants import SCALES
-from note import Note
+
+from chordq.constants import SCALES
+from chordq.note import Note
 
 
 @attr.define()
@@ -9,8 +10,8 @@ class Scale:
 
     key: str
     scale_type: str
-    notes: list[str] = attr.field(init=False)
-    intervals: dict[str, str] = attr.field(init=False)
+    notes: list[Note] = attr.field(init=False)
+    intervals: dict[str, Note] = attr.field(init=False)
 
     def __attrs_post_init__(self) -> None:
         self.key = self.key[0].upper() + self.key[1:]  # Don't capitalize flats.
@@ -18,16 +19,16 @@ class Scale:
 
         # Various note names for Chord construction.
         self.intervals = {
-            "root": self.notes[0],
+            "root": Note(note=self.notes[0]),
             "minor third": Note(note=self.notes[2]).flat(),
-            "major third": self.notes[2],
-            "perfect fifth": self.notes[4],
+            "major third": Note(note=self.notes[2]),
+            "perfect fifth": Note(note=self.notes[4]),
             "diminished fifth": Note(note=self.notes[4]).flat(),
             "augmented fifth": Note(note=self.notes[4]).sharp(),
-            "major seventh": self.notes[6],
+            "major seventh": Note(note=self.notes[6]),
             "minor seventh": Note(note=self.notes[6]).flat(),
         }
 
-    def get_intervals(self, intervals: list[str]) -> list[str]:
+    def get_intervals(self, intervals: list[str]) -> list[Note]:
         """Given a list of string interval names, return the associated notes."""
         return [self.intervals[interval] for interval in intervals]

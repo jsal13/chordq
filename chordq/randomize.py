@@ -2,9 +2,10 @@ import random
 
 from chordq.chord import Chord
 from chordq.constants import CHORD_TYPES, SCALE_TYPES, SCALES
+from chordq.note import Note
 
 
-def random_scale(scale_type: str | None = None) -> tuple[str, str, list[str]]:
+def random_scale(scale_type: str | None = None) -> tuple[str, str, list[Note]]:
     """
     Get random scale and return (key, scale_type, scale_as_list).
 
@@ -19,7 +20,7 @@ def random_scale(scale_type: str | None = None) -> tuple[str, str, list[str]]:
         >>> print(random_scale())
         ('D#', 'min', ['D#', 'E#', 'F#', 'G#', 'A#', 'B', 'C#', 'D#'])
     """
-    scale: tuple[str, list[str]]
+    scale: tuple[str, list[Note]]
     if scale_type in ("maj", "min"):
         scale = random.choice(list(SCALES[scale_type].items()))
     elif scale_type is None:
@@ -27,12 +28,14 @@ def random_scale(scale_type: str | None = None) -> tuple[str, str, list[str]]:
         scale = random.choice(list(SCALES[scale_type].items()))
     else:
         msg = f"`scale_type` must be 'maj', 'min', or Null.  Cannot be {scale_type}."
-
         raise ValueError(msg)
-    return (scale[0], scale_type, scale[1])
+
+    scale_notes: list[Note] = [Note(note=note) for note in scale[1]]
+    print(scale_notes)
+    return (scale[0], scale_type, scale_notes)
 
 
-def random_chord() -> tuple[str, str, list[str]]:
+def random_chord() -> tuple[str, str, list[Note]]:
     """
     Generate a random chord.
 
@@ -43,5 +46,5 @@ def random_chord() -> tuple[str, str, list[str]]:
     key: str = random.choice(list(SCALES["maj"].keys()))  # Random note.
 
     chord: Chord = Chord(key=key, chord_type=chord_type)
-    chord_notes: str = chord.notes()
-    return [key, chord_type, chord_notes]
+    chord_notes: list[Note] = chord.notes()
+    return (key, chord_type, chord_notes)
