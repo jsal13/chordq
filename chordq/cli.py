@@ -1,7 +1,10 @@
+from typing import Any
+
 import click
 
 from chordq.check_solution import check_solution
 from chordq.note import Note
+from chordq.piano_display import make_piano_with_notes
 from chordq.quiz_maker import quiz_exclude_one_in_scale, quiz_random_chord
 
 
@@ -51,6 +54,7 @@ def chord_quiz() -> None:
     chord_notes: list[Note] = chord_quiz[2]
     notes_with_missing_vals: str = f"{key} " + ("__ " * (len(chord_notes) - 1))
 
+    click.echo()
     click.secho("=" * 20, fg="white")
     click.secho(f"{key}{chord_type}:", fg="green")
     click.secho(f"{notes_with_missing_vals}\n", fg="blue")
@@ -71,10 +75,23 @@ def chord_quiz() -> None:
             f"Incorrect!  The notes are {sol_str}.",
             fg="red",
         )
+    click.secho(make_piano_with_notes(notes=chord_notes))
+
+
+@click.command()
+@click.option(
+    "-n", "--num-questions", default=3, type=int, help="Number of chord questions."
+)
+@click.pass_context
+def chords_quiz(ctx: Any, num_questions: int) -> None:
+    """Create a quiz with `n` chords."""
+    for _ in range(num_questions):
+        ctx.invoke(chord_quiz)
 
 
 cli.add_command(scale_quiz)
 cli.add_command(chord_quiz)
+cli.add_command(chords_quiz)
 
 if __name__ == "__main__":
     cli()

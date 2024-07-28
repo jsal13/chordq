@@ -33,6 +33,7 @@ class Note:
             d_sharp_e_flat = self.note in ("D#", "Eb") and other.note in ("D#", "Eb")
             f_sharp_g_flat = self.note in ("F#", "Gb") and other.note in ("F#", "Gb")
             g_sharp_a_flat = self.note in ("G#", "Ab") and other.note in ("G#", "Ab")
+            e_sharp_f_natr = self.note in ("E#", "F") and other.note in ("E#", "F")
 
             return (
                 a_sharp_b_flat
@@ -40,4 +41,5 @@ class Note:
                 or d_sharp_e_flat
                 or f_sharp_g_flat
                 or g_sharp_a_flat
+                or e_sharp_f_natr
             )

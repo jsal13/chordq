@@ -20,5 +20,8 @@ test:
 chord: 
   @python ./chordq/cli.py chord-quiz
 
+chords: 
+  @python ./chordq/cli.py chords-quiz -n 5
+
 scale: 
   @python ./chordq/cli.py scale-quiz

@@ -97,3 +97,41 @@ INTERVALS_BY_CHORD_TYPE = {
     "m7": ["root", "minor third", "perfect fifth", "minor seventh"],
     "7": ["root", "major third", "perfect fifth", "minor seventh"],
 }
+
+
+# ASCII PIANO
+
+PIANO_ASCII = [
+    " ___________________________ ",
+    "|  ||| |||  |  ||| ||| |||  |",
+    "|  ||| |||  |  ||| ||| |||  |",
+    "|  ||| |||  |  ||| ||| |||  |",
+    "|  ||| |||  |  ||| ||| |||  |",
+    "|   |   |   |   |   |   |   |",
+    "|   |   |   |   |   |   |   |",
+    "|___|___|___|___|___|___|___|",
+]
+
+PLAY_NOTE_SYMBOL = "#"
+SHARP_ROW = 3
+NATURAL_ROW = 6
+PIANO_ASCII_MAP = {
+    "C": (NATURAL_ROW, 2),
+    "C#": (SHARP_ROW, 4),
+    "Db": (SHARP_ROW, 4),
+    "D": (NATURAL_ROW, 6),
+    "D#": (SHARP_ROW, 8),
+    "Eb": (SHARP_ROW, 8),
+    "E": (NATURAL_ROW, 10),
+    "E#": (NATURAL_ROW, 14),
+    "F": (NATURAL_ROW, 14),
+    "F#": (SHARP_ROW, 16),
+    "Gb": (SHARP_ROW, 16),
+    "G": (NATURAL_ROW, 18),
+    "G#": (SHARP_ROW, 20),
+    "Ab": (SHARP_ROW, 20),
+    "A": (NATURAL_ROW, 22),
+    "A#": (SHARP_ROW, 24),
+    "Bb": (SHARP_ROW, 24),
+    "B": (NATURAL_ROW, 26),
+}
