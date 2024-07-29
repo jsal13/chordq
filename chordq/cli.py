@@ -5,7 +5,13 @@ import click
 from chordq.check_solution import check_solution
 from chordq.note import Note
 from chordq.piano_display import make_piano_with_notes
-from chordq.quiz_maker import quiz_exclude_one_in_scale, quiz_random_chord
+from chordq.quiz_maker import (
+    quiz_exclude_one_in_scale,
+    quiz_random_chord,
+    solution_output,
+)
+
+SPACE_FROM_TOP_OF_TERMINAL = "\n" * 1
 
 
 @click.group()
@@ -29,19 +35,15 @@ def scale_quiz() -> None:
         scale_quiz[3]
     ]  # Singleton list for solution checker.
 
-    click.secho("=" * 20, fg="white")
+    click.clear()
+    click.echo(SPACE_FROM_TOP_OF_TERMINAL)
     click.echo(f"{key} {scale_type.title()}:")
     click.secho(f"{notes_with_missing_val_str}\n", fg="blue")
     user_guess: str = click.prompt("Missing note")
+    correct_answer: str = str(missing_note_val[0])
 
-    if check_solution(user_guess, missing_note_val):
-        click.secho(
-            f"Correct!  The missing note was {missing_note_val[0]}.", fg="green"
-        )
-    else:
-        click.secho(
-            f"Incorrect!  The missing note was {missing_note_val[0]}.", fg="red"
-        )
+    result: bool = check_solution(user_guess, missing_note_val)
+    solution_output(result=result, correct_answer=correct_answer)
 
 
 @click.command()
@@ -54,28 +56,20 @@ def chord_quiz() -> None:
     chord_notes: list[Note] = chord_quiz[2]
     notes_with_missing_vals: str = f"{key} " + ("__ " * (len(chord_notes) - 1))
 
-    click.echo()
-    click.secho("=" * 20, fg="white")
+    click.clear()
+    click.echo(SPACE_FROM_TOP_OF_TERMINAL)
     click.secho(f"{key}{chord_type}:", fg="green")
     click.secho(f"{notes_with_missing_vals}\n", fg="blue")
     user_answer: str = click.prompt("Missing notes").lower()
 
     result: bool = check_solution(user_answer=user_answer, answer=chord_notes)
-    sol_str: str = " ".join(
+    correct_answer: str = " ".join(
         [str(note) for note in chord_notes]
     )  # String of solution notes.
 
-    if result:
-        click.secho(
-            f"Correct!  The notes are {sol_str}.",
-            fg="green",
-        )
-    else:
-        click.secho(
-            f"Incorrect!  The notes are {sol_str}.",
-            fg="red",
-        )
+    solution_output(result=result, correct_answer=correct_answer)
     click.secho(make_piano_with_notes(notes=chord_notes))
+    input("\n\nPress enter...")  # Waits for user input, anything.
 
 
 @click.command()

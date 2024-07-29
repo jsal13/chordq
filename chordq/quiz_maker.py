@@ -1,5 +1,7 @@
 import random
 
+import click
+
 from chordq.note import Note
 from chordq.randomize import random_chord, random_scale
 
@@ -44,3 +46,23 @@ def quiz_random_chord() -> tuple[str, str, list[Note]]:
     chord_notes: list[Note] = chord[2]
 
     return (key, chord_type, chord_notes)
+
+
+def solution_output(result: bool, correct_answer: str) -> None:
+    """
+    Generate a "Correct/Incorrect" text answer.
+
+    Args:
+        result (bool): If the user got the question correct or not.
+        correct_answer (str): The correct answer, as a string.
+    """
+    if result:
+        click.secho(
+            f"\nCorrect! The answer was: {correct_answer}.",
+            fg="green",
+        )
+    else:
+        click.secho(
+            f"\nIncorrect! The answer was: {correct_answer}.",
+            fg="red",
+        )
