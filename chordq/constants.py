@@ -115,7 +115,8 @@ PIANO_ASCII = [
 PLAY_NOTE_SYMBOL = "#"
 SHARP_ROW = 3
 NATURAL_ROW = 6
-PIANO_ASCII_MAP = {
+PIANO_ASCII_MAP = {  # Includes all flats/sharps, even if it is another note.
+    "Cb": (NATURAL_ROW, 26),
     "C": (NATURAL_ROW, 2),
     "C#": (SHARP_ROW, 4),
     "Db": (SHARP_ROW, 4),
@@ -124,6 +125,7 @@ PIANO_ASCII_MAP = {
     "Eb": (SHARP_ROW, 8),
     "E": (NATURAL_ROW, 10),
     "E#": (NATURAL_ROW, 14),
+    "Fb": (NATURAL_ROW, 10),
     "F": (NATURAL_ROW, 14),
     "F#": (SHARP_ROW, 16),
     "Gb": (SHARP_ROW, 16),
@@ -134,4 +136,5 @@ PIANO_ASCII_MAP = {
     "A#": (SHARP_ROW, 24),
     "Bb": (SHARP_ROW, 24),
     "B": (NATURAL_ROW, 26),
+    "B#": (NATURAL_ROW, 2),
 }
