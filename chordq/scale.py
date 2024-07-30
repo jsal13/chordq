@@ -9,13 +9,13 @@ class Scale:
     """Represent a Scale."""
 
     key: str
-    scale_type: str
+    mode: str
     notes: list[Note] = attr.field(init=False)
     intervals: dict[str, Note] = attr.field(init=False)
 
     def __attrs_post_init__(self) -> None:
         self.key = self.key[0].upper() + self.key[1:]  # Don't capitalize flats.
-        self.notes = SCALES[self.scale_type][self.key]
+        self.notes = SCALES[self.mode][self.key]
 
         # Various note names for Chord construction.
         self.intervals = {

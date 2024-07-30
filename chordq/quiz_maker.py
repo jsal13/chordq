@@ -3,6 +3,9 @@ import random
 import click
 
 from chordq.note import Note
+from chordq.progression import (
+    generate_random_progression,
+)
 from chordq.randomize import random_chord, random_scale
 
 
@@ -11,7 +14,7 @@ def quiz_exclude_one_in_scale() -> tuple[str, str, list[Note], Note]:
     Excludes one value in the list of notes in a `scale`.
 
     Returns:
-        tuple[str, str, list[str], str]: Tuple with key, scale_type,
+        tuple[str, str, list[str], str]: Tuple with key, mode,
             list_of_notes_with_missing_note, missing_note.
 
     Examples:
@@ -35,17 +38,28 @@ def quiz_exclude_one_in_scale() -> tuple[str, str, list[Note], Note]:
 
 def quiz_random_chord() -> tuple[str, str, list[Note]]:
     """
-    Quiz the user on a random maj chord.
+    Quiz the user on a random chord.
 
     Returns:
-        tuple[str, list[str]]: Tuple of Chord_Type and List of Values.
+        tuple[str, list[str]]: Tuple of mode and List of Values.
     """
     chord: tuple[str, str, list[Note]] = random_chord()
     key: str = chord[0]
-    chord_type: str = chord[1]
+    mode: str = chord[1]
     chord_notes: list[Note] = chord[2]
 
-    return (key, chord_type, chord_notes)
+    return (key, mode, chord_notes)
+
+
+def quiz_random_progression() -> tuple[str, str, list[str], list[str]]:
+    """Quiz the user on a random progression."""
+    key: str
+    mode: str
+    progression: list[str]
+    chords: list[str]
+    key, mode, progression, chords = generate_random_progression()
+
+    return (key, mode, progression, chords)
 
 
 def solution_output(result: bool, correct_answer: str) -> None:

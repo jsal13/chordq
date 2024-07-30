@@ -1,4 +1,4 @@
-SCALE_TYPES = ["maj", "min"]
+MODES = ["maj", "min"]
 SCALES = {
     "maj": {
         "C": ["C", "D", "E", "F", "G", "A", "B", "C"],
@@ -85,10 +85,7 @@ FLATS = {
     "G#": "G",
 }
 
-
-CHORD_TYPES = ["maj", "min", "dim", "aug", "maj7", "m7", "7"]
-
-INTERVALS_BY_CHORD_TYPE = {
+INTERVALS_BY_MODE = {
     "maj": ["tonic", "major third", "perfect fifth"],
     "min": ["tonic", "minor third", "perfect fifth"],
     "dim": ["tonic", "minor third", "diminished fifth"],
@@ -149,4 +146,30 @@ PIANO_ASCII_MAP = {  # Includes all flats/sharps, even if it is another note.
     "Bb": (SHARP_ROW, 24),
     "B": (NATURAL_ROW, 26),
     "B#": (NATURAL_ROW, 2),
+}
+
+ROMAN_NUMERAL_SYSTEM = {
+    "maj": ["maj", "min", "min", "maj", "maj", "min", "dim"],
+    "min": ["min", "dim", "maj", "min", "min", "maj", "maj"],
+}
+
+# Note: we're not completely randomizing...
+CHORD_PROGRESSIONS: dict[str, list[list[str]]] = {
+    "maj": [
+        ["I", "IV", "V"],
+        ["I", "vi", "IV", "V"],
+        ["ii", "V", "I"],
+        ["I", "vi", "ii", "V"],
+        ["I", "V", "vi", "IV"],
+        ["I", "IV", "vi", "V"],
+        ["I", "iii", "IV", "V"],
+        ["I", "IV", "I", "V"],
+        ["I", "IV", "ii", "V"],
+    ]
+}
+
+# Eventually make this a function?  Like map to int but then modify?
+CHORD_PROGRESSION_TO_INDEX: dict[str, dict[str, int]] = {
+    "maj": {"I": 0, "ii": 1, "iii": 2, "IV": 3, "V": 4, "vi": 5, "vii°": 6},
+    "min": {"i": 0, "ii°": 1, "III": 2, "iv": 3, "v": 4, "VI": 5, "VII": 6},
 }
