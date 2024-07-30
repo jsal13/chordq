@@ -25,3 +25,6 @@ chords:
 
 scale: 
   @python ./chordq/cli.py scale-quiz
+
+scale: 
+  @python ./chordq/cli.py progression-quiz
