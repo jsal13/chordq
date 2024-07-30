@@ -165,7 +165,18 @@ CHORD_PROGRESSIONS: dict[str, list[list[str]]] = {
         ["I", "iii", "IV", "V"],
         ["I", "IV", "I", "V"],
         ["I", "IV", "ii", "V"],
-    ]
+    ],
+    "min": [
+        ["i", "VI", "VII"],
+        ["i", "iv", "VII"],
+        ["i", "iv", "v"],
+        ["i", "VI", "III", "VII"],
+        ["ii", "v", "i"],
+        ["i", "iv", "v", "i"],
+        ["VI", "VII", "i", "i"],
+        ["i", "VII", "VI", "VII"],
+        ["i", "iv", "i"],
+    ],
 }
 
 # Eventually make this a function?  Like map to int but then modify?
