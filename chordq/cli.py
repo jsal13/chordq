@@ -37,7 +37,7 @@ def scale_quiz() -> None:
 
     click.clear()
     click.echo(SPACE_FROM_TOP_OF_TERMINAL)
-    click.echo(f"{key} {scale_type.title()}:")
+    click.echo(f"{key}{scale_type}:")
     click.secho(f"{notes_with_missing_val_str}\n", fg="blue")
     user_guess: str = click.prompt("Missing note")
     correct_answer: str = str(missing_note_val[0])

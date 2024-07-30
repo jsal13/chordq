@@ -19,14 +19,19 @@ class Scale:
 
         # Various note names for Chord construction.
         self.intervals = {
-            "root": Note(note=self.notes[0]),
+            "tonic": Note(note=self.notes[0]),
+            "minor second": Note(note=self.notes[1]).flat(),
+            "major second": Note(note=self.notes[1]),
             "minor third": Note(note=self.notes[2]).flat(),
             "major third": Note(note=self.notes[2]),
-            "perfect fifth": Note(note=self.notes[4]),
+            "perfect fourth": Note(note=self.notes[3]),
             "diminished fifth": Note(note=self.notes[4]).flat(),
+            "perfect fifth": Note(note=self.notes[4]),
             "augmented fifth": Note(note=self.notes[4]).sharp(),
-            "major seventh": Note(note=self.notes[6]),
+            "minor sixth": Note(note=self.notes[5]).flat(),
+            "major sixth": Note(note=self.notes[5]),
             "minor seventh": Note(note=self.notes[6]).flat(),
+            "major seventh": Note(note=self.notes[6]),
         }
 
     def get_intervals(self, intervals: list[str]) -> list[Note]:

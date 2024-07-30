@@ -89,13 +89,25 @@ FLATS = {
 CHORD_TYPES = ["maj", "min", "dim", "aug", "maj7", "m7", "7"]
 
 INTERVALS_BY_CHORD_TYPE = {
-    "maj": ["root", "major third", "perfect fifth"],
-    "min": ["root", "minor third", "perfect fifth"],
-    "dim": ["root", "minor third", "diminished fifth"],
-    "aug": ["root", "major third", "augmented fifth"],
-    "maj7": ["root", "major third", "perfect fifth", "major seventh"],
-    "m7": ["root", "minor third", "perfect fifth", "minor seventh"],
-    "7": ["root", "major third", "perfect fifth", "minor seventh"],
+    "maj": ["tonic", "major third", "perfect fifth"],
+    "min": ["tonic", "minor third", "perfect fifth"],
+    "dim": ["tonic", "minor third", "diminished fifth"],
+    "aug": ["tonic", "major third", "augmented fifth"],
+    "5": ["tonic", "perfect fifth"],
+    "maj7": ["tonic", "major third", "perfect fifth", "major seventh"],
+    "m7": ["tonic", "minor third", "perfect fifth", "minor seventh"],
+    "7": ["tonic", "major third", "perfect fifth", "minor seventh"],
+    "2": ["tonic", "major second", "major third", "perfect fifth"],
+    "add9": ["tonic", "major third", "perfect fifth", "major second"],
+    "m2": ["tonic", "major second", "minor third", "perfect fifth"],
+    "madd9": ["tonic", "minor third", "perfect fifth", "major second"],
+    "6": ["tonic", "major third", "perfect fifth", "major sixth"],
+    "m6": ["tonic", "minor third", "perfect fifth", "major sixth"],
+    "9": ["tonic", "major third", "perfect fifth", "minor seventh", "major second"],
+    "maj9": ["tonic", "major third", "perfect fifth", "major seventh", "major second"],
+    "m9": ["tonic", "minor third", "perfect fifth", "minor seventh", "major second"],
+    "sus2": ["tonic", "major second", "perfect fifth"],
+    "sus4": ["tonic", "perfect fourth", "perfect fifth"],
 }
 
 
