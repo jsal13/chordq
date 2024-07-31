@@ -1,39 +1,59 @@
-import attr
+import random
 
-from chordq.constants import SCALES
+import attrs
+
+from chordq.constants import MODES, SCALES
 from chordq.note import Note
 
 
-@attr.define()
+@attrs.define()
 class Scale:
     """Represent a Scale."""
 
     key: str
     mode: str
-    notes: list[Note] = attr.field(init=False)
-    intervals: dict[str, Note] = attr.field(init=False)
+    notes: list[Note]
+    intervals: dict[str, Note] = attrs.field(init=False)
 
     def __attrs_post_init__(self) -> None:
-        self.key = self.key[0].upper() + self.key[1:]  # Don't capitalize flats.
-        self.notes = SCALES[self.mode][self.key]
+        self.intervals = Scale.generate_all_intervals(notes=self.notes)
 
+    @staticmethod
+    def generate_all_intervals(notes: list[Note]) -> list[Note]:
+        """Get note names given an list of intervals and a scale."""
         # Various note names for Chord construction.
-        self.intervals = {
-            "tonic": Note(note=self.notes[0]),
-            "minor second": Note(note=self.notes[1]).flat(),
-            "major second": Note(note=self.notes[1]),
-            "minor third": Note(note=self.notes[2]).flat(),
-            "major third": Note(note=self.notes[2]),
-            "perfect fourth": Note(note=self.notes[3]),
-            "diminished fifth": Note(note=self.notes[4]).flat(),
-            "perfect fifth": Note(note=self.notes[4]),
-            "augmented fifth": Note(note=self.notes[4]).sharp(),
-            "minor sixth": Note(note=self.notes[5]).flat(),
-            "major sixth": Note(note=self.notes[5]),
-            "minor seventh": Note(note=self.notes[6]).flat(),
-            "major seventh": Note(note=self.notes[6]),
+        interval_notes = {
+            "tonic": notes[0],
+            "minor second": notes[1].flat(),
+            "major second": notes[1],
+            "minor third": notes[2].flat(),
+            "major third": notes[2],
+            "perfect fourth": notes[3],
+            "diminished fifth": notes[4].flat(),
+            "perfect fifth": notes[4],
+            "augmented fifth": notes[4].sharp(),
+            "minor sixth": notes[5].flat(),
+            "major sixth": notes[5],
+            "minor seventh": notes[6].flat(),
+            "major seventh": notes[6],
         }
 
-    def get_intervals(self, intervals: list[str]) -> list[Note]:
-        """Given a list of string interval names, return the associated notes."""
+        return interval_notes
+
+    @classmethod
+    def generate_scale(cls, key: str, mode: str) -> "Scale":
+        """Generate a random Scale."""
+        notes: list[Note] = [Note(note) for note in SCALES[mode][key]]
+        return cls(key=key, mode=mode, notes=notes)
+
+    @classmethod
+    def generate_random_scale(cls) -> "Scale":
+        """Generate a random Scale."""
+        mode = random.choice(MODES)
+        key = random.choice(list(SCALES[mode].keys()))
+        notes: list[Note] = [Note(note) for note in SCALES[mode][key]]
+        return cls(key=key, mode=mode, notes=notes)
+
+    def get_notes_from_intervals(self, intervals: list[str]) -> list[Note]:
+        """Get notes from list of intervals."""
         return [self.intervals[interval] for interval in intervals]

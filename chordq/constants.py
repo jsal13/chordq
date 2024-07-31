@@ -1,43 +1,44 @@
-MODES = ["maj", "min"]
-SCALES = {
+MODES: list[str] = ["maj", "min"]
+MODE_FULL_NAME_MAP: str = {"maj": "Major", "min": "Minor"}
+SCALES: dict[str, dict[str, list[str]]] = {
     "maj": {
-        "C": ["C", "D", "E", "F", "G", "A", "B", "C"],
-        "G": ["G", "A", "B", "C", "D", "E", "F#", "G"],
-        "D": ["D", "E", "F#", "G", "A", "B", "C#", "D"],
-        "A": ["A", "B", "C#", "D", "E", "F#", "G#", "A"],
-        "E": ["E", "F#", "G#", "A", "B", "C#", "D#", "E"],
-        "B": ["B", "C#", "D#", "E", "F#", "G#", "A#", "B"],
-        "F#": ["F#", "G#", "A#", "B", "C#", "D#", "E#", "F#"],
-        "C#": ["C#", "D#", "E#", "F#", "G#", "A#", "B#", "C#"],
-        "F": ["F", "G", "A", "Bb", "C", "D", "E", "F"],
-        "Bb": ["Bb", "C", "D", "Eb", "F", "G", "A", "Bb"],
-        "Eb": ["Eb", "F", "G", "Ab", "Bb", "C", "D", "Eb"],
-        "Ab": ["Ab", "Bb", "C", "Db", "Eb", "F", "G", "Ab"],
-        "Db": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C", "Db"],
-        "Gb": ["Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F", "Gb"],
-        "Cb": ["Cb", "Db", "Eb", "Fb", "Gb", "Ab", "Bb", "Cb"],
+        "C": ["C", "D", "E", "F", "G", "A", "B"],
+        "G": ["G", "A", "B", "C", "D", "E", "F#"],
+        "D": ["D", "E", "F#", "G", "A", "B", "C#"],
+        "A": ["A", "B", "C#", "D", "E", "F#", "G#"],
+        "E": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+        "B": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+        "F#": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
+        "C#": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
+        "F": ["F", "G", "A", "Bb", "C", "D", "E"],
+        "Bb": ["Bb", "C", "D", "Eb", "F", "G", "A"],
+        "Eb": ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
+        "Ab": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
+        "Db": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
+        "Gb": ["Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F"],
+        "Cb": ["Cb", "Db", "Eb", "Fb", "Gb", "Ab", "Bb"],
     },
     "min": {
-        "A": ["A", "B", "C", "D", "E", "F", "G", "A"],
-        "E": ["E", "F#", "G", "A", "B", "C", "D", "E"],
-        "B": ["B", "C#", "D", "E", "F#", "G", "A", "B"],
-        "F#": ["F#", "G#", "A", "B", "C#", "D", "E", "F#"],
-        "C#": ["C#", "D#", "E", "F#", "G#", "A", "B", "C#"],
-        "G#": ["G#", "A#", "B", "C#", "D#", "E", "F#", "G#"],
-        "D#": ["D#", "E#", "F#", "G#", "A#", "B", "C#", "D#"],
-        "A#": ["A#", "B#", "C#", "D#", "E#", "F#", "G#", "A#"],
-        "D": ["D", "E", "F", "G", "A", "Bb", "C", "D"],
-        "G": ["G", "A", "Bb", "C", "D", "Eb", "F", "G"],
-        "C": ["C", "D", "Eb", "F", "G", "Ab", "Bb", "C"],
-        "F": ["F", "G", "Ab", "Bb", "C", "Db", "Eb", "F"],
-        "Bb": ["Bb", "C", "Db", "Eb", "F", "Gb", "Ab", "Bb"],
-        "Eb": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db", "Eb"],
-        "Ab": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb", "Ab"],
+        "A": ["A", "B", "C", "D", "E", "F", "G"],
+        "E": ["E", "F#", "G", "A", "B", "C", "D"],
+        "B": ["B", "C#", "D", "E", "F#", "G", "A"],
+        "F#": ["F#", "G#", "A", "B", "C#", "D", "E"],
+        "C#": ["C#", "D#", "E", "F#", "G#", "A", "B"],
+        "G#": ["G#", "A#", "B", "C#", "D#", "E", "F#"],
+        "D#": ["D#", "E#", "F#", "G#", "A#", "B", "C#"],
+        "A#": ["A#", "B#", "C#", "D#", "E#", "F#", "G#"],
+        "D": ["D", "E", "F", "G", "A", "Bb", "C"],
+        "G": ["G", "A", "Bb", "C", "D", "Eb", "F"],
+        "C": ["C", "D", "Eb", "F", "G", "Ab", "Bb"],
+        "F": ["F", "G", "Ab", "Bb", "C", "Db", "Eb"],
+        "Bb": ["Bb", "C", "Db", "Eb", "F", "Gb", "Ab"],
+        "Eb": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db"],
+        "Ab": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb"],
     },
 }
 
 
-SHARPS = {
+SHARPS: dict[str, str] = {
     "A": "A#",
     "Ab": "A",
     "A#": "B",
@@ -61,7 +62,7 @@ SHARPS = {
     "G#": "A",
 }
 
-FLATS = {
+FLATS: dict[str, str] = {
     "A": "G#",
     "Ab": "G",
     "A#": "A",
@@ -85,7 +86,7 @@ FLATS = {
     "G#": "G",
 }
 
-INTERVALS_BY_MODE = {
+INTERVALS_BY_MODE: dict[str, list[str]] = {
     "maj": ["tonic", "major third", "perfect fifth"],
     "min": ["tonic", "minor third", "perfect fifth"],
     "dim": ["tonic", "minor third", "diminished fifth"],
@@ -110,7 +111,7 @@ INTERVALS_BY_MODE = {
 
 # ASCII PIANO
 
-PIANO_ASCII = [
+PIANO_ASCII: list[str] = [
     " ___________________________ ",
     "|  ||| |||  |  ||| ||| |||  |",
     "|  ||| |||  |  ||| ||| |||  |",
@@ -121,10 +122,11 @@ PIANO_ASCII = [
     "|___|___|___|___|___|___|___|",
 ]
 
-PLAY_NOTE_SYMBOL = "#"
-SHARP_ROW = 3
-NATURAL_ROW = 6
-PIANO_ASCII_MAP = {  # Includes all flats/sharps, even if it is another note.
+PLAY_NOTE_SYMBOL: str = "#"
+SHARP_ROW: int = 3
+NATURAL_ROW: int = 6
+PIANO_ASCII_MAP: dict[str, tuple[int, int]] = {
+    # Includes all flats/sharps, even if it is another note.
     "Cb": (NATURAL_ROW, 26),
     "C": (NATURAL_ROW, 2),
     "C#": (SHARP_ROW, 4),
@@ -148,7 +150,7 @@ PIANO_ASCII_MAP = {  # Includes all flats/sharps, even if it is another note.
     "B#": (NATURAL_ROW, 2),
 }
 
-ROMAN_NUMERAL_SYSTEM = {
+ROMAN_NUMERAL_SYSTEM: dict[str, list[str]] = {
     "maj": ["maj", "min", "min", "maj", "maj", "min", "dim"],
     "min": ["min", "dim", "maj", "min", "min", "maj", "maj"],
 }
@@ -184,3 +186,6 @@ CHORD_PROGRESSION_TO_INDEX: dict[str, dict[str, int]] = {
     "maj": {"I": 0, "ii": 1, "iii": 2, "IV": 3, "V": 4, "vi": 5, "vii°": 6},
     "min": {"i": 0, "ii°": 1, "III": 2, "iv": 3, "v": 4, "VI": 5, "VII": 6},
 }
+
+
+SPACE_FROM_TOP_OF_TERMINAL: str = "\n" * 1

@@ -28,3 +28,6 @@ scale:
 
 progression: 
   @python ./chordq/cli.py progression-quiz
+
+progressions: 
+  @python ./chordq/cli.py progression-quiz -n 5
