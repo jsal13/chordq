@@ -173,7 +173,7 @@ CHORD_PROGRESSIONS: dict[str, list[list[str]]] = {
         ["i", "iv", "VII"],
         ["i", "iv", "v"],
         ["i", "VI", "III", "VII"],
-        ["ii", "v", "i"],
+        # ["ii", "v", "i"],  # Don't know how to treat "ii" yet.
         ["i", "iv", "v", "i"],
         ["VI", "VII", "i", "i"],
         ["i", "VII", "VI", "VII"],
