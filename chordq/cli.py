@@ -111,7 +111,11 @@ def progression_quiz() -> None:
 
 @click.command()
 @click.option(
-    "-n", "--num-questions", default=3, type=int, help="Number of chord questions."
+    "-n",
+    "--num-questions",
+    default=3,
+    type=int,
+    help="Number of progression questions.",
 )
 @click.pass_context
 def progressions_quiz(ctx: Any, num_questions: int) -> None:

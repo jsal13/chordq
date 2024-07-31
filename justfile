@@ -30,4 +30,4 @@ progression:
   @python ./chordq/cli.py progression-quiz
 
 progressions: 
-  @python ./chordq/cli.py progression-quiz -n 5
+  @python ./chordq/cli.py progressions-quiz -n 5
