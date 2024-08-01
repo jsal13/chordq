@@ -158,15 +158,18 @@ ROMAN_NUMERAL_SYSTEM: dict[str, list[str]] = {
 # Note: we're not completely randomizing...
 CHORD_PROGRESSIONS: dict[str, list[list[str]]] = {
     "maj": [
-        ["I", "IV", "V"],
-        ["I", "vi", "IV", "V"],
-        ["ii", "V", "I"],
-        ["I", "vi", "ii", "V"],
-        ["I", "V", "vi", "IV"],
-        ["I", "IV", "vi", "V"],
         ["I", "iii", "IV", "V"],
         ["I", "IV", "I", "V"],
         ["I", "IV", "ii", "V"],
+        ["I", "IV", "V"],
+        ["I", "IV", "vi", "V"],
+        ["I", "V", "vi", "IV"],  # Pop Prog
+        ["vi", "IV", "I", "V"],  # Pop Prog (Alt)
+        ["I", "vi", "ii", "V"],
+        ["I", "vi", "IV", "V"],  # Doo-Wop
+        ["I", "VII", "VI", "V"],  # Andalusian
+        ["ii", "V", "I"],
+        ["IV", "V", "iii", "vi"],  # Royal Roads Prog.
     ],
     "min": [
         ["i", "VI", "VII"],
