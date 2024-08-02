@@ -6,9 +6,9 @@ build-backend = "hatchling.build"
 name = "chordq"
 version = "0.1.0"
 description = ""
-readme = "README.md"
+# readme = "README.md"
 requires-python = ">=3.10"
-license = { file = "LICENSE" }
+# license = { file = "LICENSE" }
 
 # This field adds keywords for your project which will appear on the
 # project page. What does your project relate to?

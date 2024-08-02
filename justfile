@@ -31,3 +31,6 @@ progression:
 
 progressions: 
   @python ./chordq/cli.py progressions-quiz -n 5
+
+play:
+  @docker compose run app
